@@ -4,13 +4,13 @@ DATA    = /home/$(USER)/data
 
 all: up
 
-$(DATA):
+dirs:
 	@mkdir -p $(DATA)/mariadb $(DATA)/wordpress
 
-build: $(DATA)
+build: dirs
 	$(COMPOSE) build
 
-up: $(DATA)
+up: dirs
 	$(COMPOSE) up -d --build
 
 down:
@@ -37,4 +37,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all build up down stop start logs ps clean fclean re
+.PHONY: all dirs build up down stop start logs ps clean fclean re
